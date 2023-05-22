@@ -35,3 +35,7 @@ function onInputSearch(e) {
               Notify.failure('Oops, there is no country with that name');
           })
 };
+
+function renderedCountries(result) {
+    
+};
