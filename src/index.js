@@ -24,7 +24,9 @@ function onInputSearch(e) {
   fetchCountries(SearchForContry)
           .then(result => {
               if (result.length > 10) {
-                  Notify.info('Too many matches found. Please, enter a more specific name.');
+                  notiflix.Notify.info(
+                    'Too many matches found. Please, enter a more specific name.'
+                  );
                   return;
               }
               renderedCountries(result);
@@ -32,7 +34,9 @@ function onInputSearch(e) {
           .catch(error => {
               countryList.innerHTML = '';
               countryInfo.innerHTML = '';
-              Notify.failure('Oops, there is no country with that name');
+              notiflix.Notify.failure(
+                'Oops, there is no country with that name'
+              );
           })
 };
 
