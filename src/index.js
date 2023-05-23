@@ -41,5 +41,15 @@ function onInputSearch(e) {
 };
 
 function renderedCountries(result) {
-    
+    const inputLength = result.length;
+
+    if (inputLength === 1) {
+        countryList.innerHTML = "";
+        //return card with winformation
+    }
+
+    if (inputLength > 1) {
+        countryInfo.innerHTML = "";
+        //return card with winformation
+    }
 };
