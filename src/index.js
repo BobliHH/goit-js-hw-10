@@ -8,6 +8,9 @@ const DEBOUNCE_DELAY = 300;
 const searchBox = document.querySelector('#search-box');
 const countryList = document.querySelector('.country-list');
 const countryInfo = document.querySelector('.country-info');
+const body = document.querySelector('body');
+
+body.style.backgroundColor = 'rgb(0, 0, 168)';
 
 searchBox.addEventListener('input', debounce(onInputSearch, DEBOUNCE_DELAY));
 
