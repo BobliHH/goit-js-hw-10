@@ -19,25 +19,25 @@ function onInputSearch(e) {
     countryList.innerHTML = '';
     countryInfo.innerHTML = '';
     return;
-  }
+  };
 
   fetchCountries(SearchForContry)
-          .then(result => {
-              if (result.length > 10) {
-                  notiflix.Notify.info(
-                    'Too many matches found. Please, enter a more specific name.'
-                  );
-                  return;
-              }
-              renderedCountries(result);
-          })
-          .catch(error => {
-              countryList.innerHTML = '';
-              countryInfo.innerHTML = '';
-              notiflix.Notify.failure(
-                'Oops, there is no country with that name'
-              );
-          })
+    .then(result => {
+      if (result.length > 10) {
+        notiflix.Notify.info(
+          'Too many matches found. Please, enter a more specific name.'
+        );
+        return;
+      };
+      renderedCountries(result);
+    })
+    .catch(error => {
+      countryList.innerHTML = '';
+      countryInfo.innerHTML = '';
+      notiflix.Notify.failure(
+        'Oops, there is no country with that name'
+      );
+    })
 };
 
 function renderedCountries(result) {
@@ -45,11 +45,33 @@ function renderedCountries(result) {
 
     if (inputLength === 1) {
         countryList.innerHTML = "";
-        //return card with winformation
-    }
+        countryCardReturn(result);
+  };
 
     if (inputLength > 1) {
         countryInfo.innerHTML = "";
-        //return card with winformation
-    }
+        countryListReturn(result);
+  };
 };
+
+function countryListReturn(result) {
+  let listReturn = result.map((({ name, flags }) => {
+    return `<li><img src="${flags.svg}" alt="${name}" width="60" height="auto">
+                         <span>${name.official}</span></li>`;
+  })).join(' ');
+  countryList.innerHTML = listReturn;
+}
+
+function countryCardReturn(result) {
+  let cardReturn = result.map(({ name, capital, population, flags, languages })=>
+  {
+    languages = Object.values(languages).join(", ");
+    return `<img src="${flags.svg}" alt="${name}" width="320" height="auto">
+    <p>"${name.official}"</p>
+    <p>Capital: <span> ${capital}</span></p>
+    <p>Population: <span> ${population}</span></p>
+    <p>Languages: <span> ${languages}</span></p>`;
+  }).join(' ');
+  countryInfo.innerHTML = cardReturn;
+  return cardReturn;
+}
